@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<!--icon in title bar-->
+		<link rel='shortcut icon' href='../favicon.ico'>
+		<title>
+			Profile Page
+		</title>
+	</head>
+	<style>
+		header.head{
+			position: sticky;
+			top: 0;
+		}
+		input {
+			border-style: none;
+			border-radius: 4px;
+			height: 27px;
+		}
+		div.logout{
+			position: fixed;
+			top : 0;
+			right: 0;
+		}
+		button {
+			color : orangered;
+			background-color: yellow;
+			border-style: none;
+			border-radius: 7px;
+			text-align: center;
+			font-style: oblique;
+			padding-right: 37px;
+			padding-left: 37px;
+			padding-top: 13px;
+			padding-bottom: 10px;
+			margin-left: 7px;
+		}
+		button:hover{
+			cursor: auto;
+			background-color: gold;
+		}
+		img{
+			border-radius: 42%;
+			margin-left: 39%;
+		}
+	</style>
+	<script>
+	function readOnlyFalse(id){
+	    console.log(document.getElementById(id).readonly);
+		document.getElementById(id).readonly = 'false';
+	} 	
+	</script>
+	<body style='background-color: gold'>
+		<header>
+			<div>
+				<h1>
+					Your profile page
+				</h1>
+			</div>
+			<div class='logout'>
+				<a href="#">
+					<button>
+						Log Out
+					</button>
+				</a>
+			</div>
+		</header>
+		<br>
+		<br>
+		<!--http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-backgrounds_123830959_275.jpg-->
+		<img src="../pics1.jpg" width="175px" height="175px" alt='My profile pic' />
+		<br>
+		<input type='text' id='userName' name='userName' readonly="true" value='Anonymous(username is here)'>
+		<button onclick="readOnlyFalse('userName')">Edit</button>
+		<span><!--%= to get details from server %-->First + Last Name</span>
+		<br>
+		<input type='email' id='emailId' name='emailId' readonly value='unknown@email.com' />
+		<button onclick="readOnlyFalse('emailId')">Edit</button>
+		<input type='number' readonly id='phoneNumber' name='phoneNumber' value='9632587041' /><!--a href='#'-->
+		<button onclick="readOnlyFalse('phoneNumber')">Edit</button>
+		<br>
+		<h3>Your total socre is <span style='color: green'>896<!--%= socre %--></span></h3>
+		<!--%= if (questions){ %-->
+		<table>
+			<tr>
+				<td>Question Asked</td>
+				<td>
+					<ol>
+						<li>here will </li>
+						<li> show list of answers</li>
+						<li>given by users </li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		<!--% }else{%-->
+		<h2>You haven't any question</h2>
+		<!--% }%-->
+	</body>
+</html>
