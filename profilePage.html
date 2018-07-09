@@ -1,100 +1,153 @@
 <!doctype html>
 <html>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Pacifico" rel="stylesheet">  
 	<head>
-		<!--icon in title bar-->
-		<link rel='shortcut icon' href='../favicon.ico'>
 		<title>
 			Profile Page
 		</title>
 	</head>
 	<style>
-		header.head{
+		.head{
 			position: sticky;
 			top: 0;
+			background-color: white;
+			font-family: 'Pacifico', cursive;
 		}
-		input {
-			border-style: none;
-			border-radius: 4px;
-			height: 27px;
+		h1 {
+			top: 0;
+			left: 0;
+			position: fixed;
+			color: yellow;
+			margin: 7px 7px;
 		}
-		div.logout{
+		span {
+			font-style: oblique;
+			font-size: 37px;
+			font-family: 'Dancing Script', cursive;
+		}
+		div.buttons{
 			position: fixed;
 			top : 0;
 			right: 0;
 		}
+		.data{
+			font-family: 'Dancing Script', cursive;
+		}
 		button {
-			color : orangered;
-			background-color: yellow;
+			color: white;
+			font-family: 'Pacifico', cursive;
+			background-color: green;
 			border-style: none;
-			border-radius: 7px;
+			border-radius: 4.6px;
 			text-align: center;
-			font-style: oblique;
-			padding-right: 37px;
-			padding-left: 37px;
-			padding-top: 13px;
-			padding-bottom: 10px;
-			margin-left: 7px;
+			padding: 17px 13px;
+			margin: 7px 7px;
 		}
-		button:hover{
-			cursor: auto;
-			background-color: gold;
+		.container{
+			margin-left: 23%;
+			width: 65%;
+			position: relative;
 		}
-		img{
-			border-radius: 42%;
-			margin-left: 39%;
+		.hovers{
+			position: relative;
+			width: 275px;
+		}
+		.hovers:hover .profilePic{
+			opacity: 0.1;
+		}
+		.hovers:hover .imageText{
+			opacity: 1;
+		}
+		img.profilePic{
+			display: block;
+			transition: 0.3s linear;
+			border-radius: 49%;
+			/*border: 4px dashed black;*/
+			opacity: 1;
+			box-shadow: 1px 2px 3px 4px;
+			backface-visibility: hidden;
+		}
+		.imageText{
+			opacity: 0;
+			transition: 0.8s ease;
+			position: absolute;
+			padding: 12px 10px;
+			text-align: center;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: green;
+			color: white;
+			font-family: 'Indie Flower', cursive;	
+		}
+		.parallax{
+			width: 100%;
+			background-image: url('http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-backgrounds_123830959_275.jpg');
+			min-height: 375px;
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover; 
 		}
 	</style>
 	<script>
-	function readOnlyFalse(id){
-	    console.log(document.getElementById(id).readonly);
-		document.getElementById(id).readonly = 'false';
-	} 	
+		
 	</script>
-	<body style='background-color: gold'>
-		<header>
-			<div>
-				<h1>
-					Your profile page
-				</h1>
-			</div>
-			<div class='logout'>
+	<body>
+		<div class='parallax'></div>
+		<header class='head'>
+			<h1>
+				My pRoFiLe
+			</h1>
+			<div class='buttons'>
+				<a href='#'>
+					<button>
+						Edit Profile
+					</button>
+				</a>
 				<a href="#">
 					<button>
 						Log Out
 					</button>
 				</a>
 			</div>
-		</header>
+		</header>	
 		<br>
 		<br>
 		<!--http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-backgrounds_123830959_275.jpg-->
-		<img src="http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-backgrounds_123830959_275.jpg" width="175px" height="175px" alt='My profile pic' />
-		<br>
-		<input type='text' id='userName' name='userName' readonly="true" value='Anonymous(username is here)'>
-		<button onclick="readOnlyFalse('userName')">Edit</button>
-		<span><!--%= to get details from server %-->First + Last Name</span>
-		<br>
-		<input type='email' id='emailId' name='emailId' readonly value='unknown@email.com' />
-		<button onclick="readOnlyFalse('emailId')">Edit</button>
-		<input type='number' readonly id='phoneNumber' name='phoneNumber' value='9632587041' /><!--a href='#'-->
-		<button onclick="readOnlyFalse('phoneNumber')">Edit</button>
-		<br>
-		<h3>Your total socre is <span style='color: green'>896<!--%= socre %--></span></h3>
-		<!--%= if (questions){ %-->
-		<table>
-			<tr>
-				<td>Question Asked</td>
-				<td>
-					<ol>
-						<li>here will </li>
-						<li> show list of answers</li>
-						<li>given by users </li>
-					</ol>
-				</td>
-			</tr>
-		</table>
-		<!--% }else{%-->
-		<h2>You haven't any question</h2>
-		<!--% }%-->
+		<div class='hovers'>
+				<img class='profilePic' src="http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-backgrounds_123830959_275.jpg" 
+				width="275px" height="250px" alt='My profile pic'/>
+				<div class='imageText'>userName</div>
+		</div>	
+		<div class='container'>
+			<!--br-->
+			<span id='fullName'>Full Name</span>
+			<br>
+			<span id='emailId'>example@email.com</span>
+			<br>
+			<span id='phoneNumber'>+9196XXXXXX36</span>
+			<br>
+			<div class='data'>
+				<h2>Your total socre is <span style='color: blue'>896<!--%= socre %--></span></h2>
+				<!--%= if (questions){ %-->
+				<table>
+					<tr>
+						<td>Question Asked</td>
+						<td>
+							<ol>
+								<li>here will </li>
+								<li> show list of answers</li>
+								<li>given by users </li>
+							</ol>
+						</td>
+					</tr>
+				</table>
+				<!--% }else{%-->
+				<h2>You haven't any question</h2>
+				<!--% }%-->
+			</div>
+		</div>
 	</body>
 </html>
