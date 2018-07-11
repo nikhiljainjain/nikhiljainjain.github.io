@@ -1,154 +1,250 @@
-<!doctype html>
-<html>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css?family=Sofadi+One" rel="stylesheet">  
-	<head>
-		<title>
-			Profile Page
-		</title>
-	</head>
-	<style>
-		html, body{
-			height: 100%;
-			margin: 0;
-		}
-		h1 {
-			font-family: 'Sofadi One', cursive;
-			top: 0;
-			margin-top: 0;
-			left: 50%;
-			text-align: center;
-			color: green;
-			padding: 2px 2px;
-		  	border-bottom: 1px solid green;
-			border-right: 3px solid green;
-		}
-		span {
-			font-style: oblique;
-			font-size: 37px;
-			text-align: center;
-			font-family: 'Sofadi One', cursive;
-		}
-		.data{
-			text-align: center;
-			font-family: 'Sofadi One', cursive;
-		}
-		button {
-			color: white;
-			font-family: 'Sofadi One', cursive;
-			background-color: green;
-			border-style: none;
-			border-radius: 4.6px;
-			text-align: center;
-			padding: 17px 13px;
-			margin: 7px 7px;
-		}
-		button:hover {
-			cursor: wait;
-		}
-    td {
-		  width: 33%;
-			font-size-adjust:0.75;
-    }
-		.container{
-			margin-left: 13%;
-			width: 55%;
-			position: relative;
-		}
-		.hovers{
-			position: relative;
-		}
-		.hovers:hover .profilePic{
-			opacity: 0.75;
-		}
-		.hovers:hover .imageText{
-			opacity: 1;
-		}
-		.imageText{
-			opacity: 0;
-			transition: 0.8s ease;
-			position: absolute;
-			padding: 12px 10px;
-			text-align: center;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			background-color: green;
-			color: white;
-			font-family: 'Sofadi One', cursive;	
-		}
-		.parallax{
-			border-radius: 9px; 
-			opacity: 1;
-			box-shadow: 1px 1px 1px 1px green;
-			backface-visibility: hidden;
-			width: 100%;
-			background-image: url('http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-backgrounds_123830959_275.jpg');
-			min-height: 401px;
-			background-attachment: fixed;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover; 
-			transition: 0.35s linear;
-		}
-		.logOut{
-			bottom: 0;
-			right: 0;
-			position: fixed;
-		}
-		.editProfile {
-			bottom: 0;
-			left: 0;
-			position: fixed;
-		}
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<style>
+	html, body{
+		margin: 0;
+		font-family: 'Lato', sans-serif;
+	}
+	div{
+		font-family: "Lato", sans-serif;
+	}
+	nav {
+		/*background: transparent;*/
+		border-bottom: 3px black;
+		border-right: 2px black; 
+	}
+	img {
+		box-shadow: 3px 2px 1px 1px black;
+	}
+	img:hover {
+    	animation: shake 0.5s;
+    	animation-iteration-count: infinite;
+	}
+	@keyframes shake {
+		0% { transform: translate(1px, 1px) rotate(0deg); }
+		10% { transform: translate(-1px, -2px) rotate(-1deg); }
+		20% { transform: translate(-3px, 0px) rotate(1deg); }
+		30% { transform: translate(3px, 2px) rotate(0deg); }
+		40% { transform: translate(1px, -1px) rotate(1deg); }
+		50% { transform: translate(-1px, 2px) rotate(-1deg); }
+		60% { transform: translate(-3px, 1px) rotate(0deg); }
+		70% { transform: translate(3px, 1px) rotate(-1deg); }
+		80% { transform: translate(-1px, -1px) rotate(1deg); }
+		90% { transform: translate(1px, 2px) rotate(0deg); }
+		100% { transform: translate(1px, -2px) rotate(-1deg); }
+	}
+	.overlay {
+	  height: 100%;
+	  width: 100%;
+	  display: none;
+	  position: fixed;
+	  z-index: 1;
+	  top: 0;
+	  left: 0;
+	  background-color: rgb(0,0,0);
+	  background-color: rgba(0,0,0, 0.9); 
+	}
+
+	.overlay-content {
+	  position: relative;
+	  top: 46%;
+	  width: 80%;
+	  text-align: center;
+	  margin-top: 30px;
+	  margin: auto;
+	}
+
 	
+	.overlay .closebtn {
+	  position: absolute;
+	  top: 20px;
+	  right: 45px;
+	  font-size: 60px;
+	  cursor: pointer;
+	  color: white;
+	}
+
+	.overlay .closebtn:hover {
+	  color: #ccc;
+	}
+	.overlay input[type=text] {
+	  padding: 15px;
+	  font-size: 17px;
+	  border: none;
+	  float: left;
+	  width: 80%;
+	  background: white;
+	  border-radius: 3px;
+	  border-style: none;
+	}
+
+	.overlay input[type=text]:hover {
+	  background: #f1f1f1;
+	}
+	.overlay button {
+	  float: left;
+	  width: 20%;
+	  padding: 15px;
+	  background: #ddd;
+	  font-size: 17px;
+	  border: none;
+	  cursor: pointer;
+	}
+
+	.overlay button:hover {
+	  background: #bbb;
+	}
+	@media screen(min-width: 1001px){
+		div{
+			font-size: 47px;
 		}
-	</style>
-	<body>
-		<h1>Full Name</h1>
-		<div class="hovers">
-			<div class='parallax profilePic'></div>
-			<div class='imageText'>User Name</div>
-		</div>	
-		<div class='editProfile'> 
-			<a href='#'>
-				<button>
-					Edit Profile
-				</button>
-			</a>
-		</div>
-		<div  class='logOut'>	
-			<a href="#">
-				<button>
-					Log Out
-				</button>
-			</a>
-		</div>	
-		<br>
-		<br>
-		<span id='emailId' style='display: inline;margin-left: 1%'>example@email.com</span>
-		<span style='display: inline;margin-left: 9%'>Your total socre is </span><span style='display: inline;color: blue'>896</span>
-		<span id='phoneNumber' style='display: inline;margin-left: 9%'>+9196XXXXXX36</span>
-		<div class='container'>
-			<div class='data'>
-				<table>
-					<tr>
-						<td>Question Asked</td>
-						<td>
-							<ol>
-								<li>here will </li>
-								<li> show list of answers</li>
-								<li>given by users </li>
-							</ol>
-						</td>
-					</tr>
-				</table>
-				<h2>You haven't any question</h2>
+		li{
+			font-size-adjust: 0.95;
+		}
+	}
+	@media screen (min-width: 601px;max-width: 1000px){
+		div{
+			font-size: 37px;
+		}
+		li{
+			font-size-adjust: 0.65;
+		}
+	}
+	@media screen (max-width: 600px){
+		div{
+			font-size: 27px;
+		}
+		li{
+			font-size-adjust: 0.45;
+		}
+	}
+	hr{
+		border-style: dashed;
+		border-color: grey;
+	}
+	progress{
+		border-style: none;
+		border-radius: 3px;
+		width: 100%;
+	}
+</style>
+<script type="text/javascript">
+	function openSearch() {
+	  document.getElementById("myOverlay").style.display = "block";
+	}
+	function closeSearch() {
+	  document.getElementById("myOverlay").style.display = "none";
+	} 
+</script>
+<head>
+	<title>WeLcOmE</title>
+</head>
+ <div id="myOverlay" class="overlay">
+  <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
+  <div class="overlay-content">
+    <form action="#">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit" class='btn btn-success'><i class="fa fa-search">Submit</i></button>
+    </form>
+  </div>
+</div> 
+<body>
+	<div id="myOverlay" class="overlay" style='background-color: red;'>
+	  <span class="closebtn" onclick="closeSearch()" title="Close Overlay">X</span>
+	  <div class="overlay-content">
+	    <form action="action_page.php">
+	      <input type="text" placeholder="Search.." name="search">
+	      <button type="submit" class='btn btn-primary'><i class="fa fa-search"></i></button>
+	    </form>
+	  </div>
+	</div> 	
+	<nav class="navbar navbar-expand-lg navbar-light">
+	  <a class="navbar-brand" href="#">Navbar</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Link</a>
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Dropdown
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="#">Action</a>
+	          <a class="dropdown-item" href="#">Another action</a>
+	          <div class="dropdown-divider"></div>
+	          <a class="dropdown-item" href="#">Something else here</a>
+	        </div>
+	      </li>
+	    </ul>
+		<button class='btn btn-warning' style='color: white;' onclick="openSearch()">Search</button>    
+	  </div>
+	</nav>
+	<div class='container-fluid' style='margin: 10px 10px'>
+		<div class='row	'>
+			<div class='col-2' style='color: black;'>
+				<img src='../stars.jpg' style='height: 225px;width: 225px;'>
+				<br>
+				<a href="#"><span style='color: blue'>Edit Profile</span></a>
+				<br>		
+				myemailaddress@email.com
+				<br>
+				My Name
+				<br>
+				+910963852741
+				<br>
+				User Name	
+			</div>
+			<div class='col-1'>
+			</div>
+			<div class='col-9'>
+				<h2>Your score is 
+					<br>
+					<hr>
+					<span style='color: blue'>765</span>
+				</h2>
+				<progress value="765" max="1000"></progress>
+				<br>
+				<div class='container'>
+					<div class='jimbotron'>	
+						<table style='margin-left: 5%'>
+							<tr>
+								<td>Question Asked by user</td>
+								<td>
+									<ul>
+										<l1>Answer 1</l1>
+										<br>
+										<l1>Answer 2</l1>
+										<br>
+										<l1>Answer 3</l1>
+										<br>
+										<l1>Answer 4</l1>
+										<br>
+										<l1>Answer 5</l1>
+										<br>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<br>
+				</div>	
 			</div>
 		</div>
-	</body>
-	<script>
-		alert('this page view base for desktop only\n'+
-		'please check the hover & parallax effect of profilePic');
-	</script>
+	</div>	
+</body>
 </html>
