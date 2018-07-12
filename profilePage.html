@@ -9,6 +9,53 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script>
+	window.onscroll = function() {
+	  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+	  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+	  var scrolled = (winScroll / height) * 100;
+	  document.getElementById("myBar").style.width = scrolled + "%";
+	} 
+	function changeView(){
+		if (document.body.clientWidth < 700 && document.documentElement.clientWidth > 350){
+			console.log('THis is working fine');
+			document.getElementById('middle').innerHtml = '<br><br>';
+			document.getElementById('rows').style = 'width: 100%;margin-left: 2%';
+			document.getElementById('rows').class = '';
+			document.getElementById('leftHand').class = '';
+			document.getElementById('leftHand').style = 'width: 100%;margin-left: 2%';
+			document.getElementById('rightHand').class = '';
+			document.getElementById('rightHand').style = 'width: 100%;margin-left: 2%';  
+		}
+	}	
+	changeView();
+	function openSearch() {
+	  document.getElementById("myOverlay").style.display = "block";
+	}
+	function closeSearch() {
+	  document.getElementById("myOverlay").style.display = "none";
+	} 
+	function dataChange(queries){
+		console.log()
+		switch(queries){
+			case 'questionAsked' : 
+				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
+					"<li class='data-items'>Question 2</li></ul>";
+				break;
+			case 'answered' :	
+				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
+					"<li class='data-items'>Question 2</li></ul>";
+				break;
+			case 'extra' :
+				document.getElementById('userData').innerHTML = "<h3 class='data-items'>No data found</h3>";
+				break;
+			default : 
+				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
+					"<liclass='data-items'>Question 2</li></ul>";
+				break;		
+		}
+	}
+</script>
 <style>
 	html, body{
 		margin: 0;
@@ -29,24 +76,9 @@
 		border-radius: 49%;
 	}
 	img:hover {
-    	/*animation: shake 0.5s;
-    	animation-iteration-count: infinite;*/
     	transform: scale3d(-1.25, -1.25, 1);
     	transition: 0.325s ease;
 	}
-	/*@keyframes shake {
-		0% { transform: translate(1px, 1px) rotate(0deg); }
-		10% { transform: translate(-1px, -2px) rotate(-1deg); }
-		20% { transform: translate(-3px, 0px) rotate(1deg); }
-		30% { transform: translate(3px, 2px) rotate(0deg); }
-		40% { transform: translate(1px, -1px) rotate(1deg); }
-		50% { transform: translate(-1px, 2px) rotate(-1deg); }
-		60% { transform: translate(-3px, 1px) rotate(0deg); }
-		70% { transform: translate(3px, 1px) rotate(-1deg); }
-		80% { transform: translate(-1px, -1px) rotate(1deg); }
-		90% { transform: translate(1px, 2px) rotate(0deg); }
-		100% { transform: translate(1px, -2px) rotate(-1deg); }
-	}*/
 	.overlay {
 	  height: 100%;
 	  width: 100%;
@@ -58,7 +90,6 @@
 	  background-color: rgb(0,0,0);
 	  background-color: rgba(0,0,0, 0.9); 
 	}
-
 	.overlay-content {
 	  position: relative;
 	  top: 46%;
@@ -67,8 +98,6 @@
 	  margin-top: 30px;
 	  margin: auto;
 	}
-
-	
 	.overlay .closebtn {
 	  position: absolute;
 	  top: 20px;
@@ -77,7 +106,6 @@
 	  cursor: pointer;
 	  color: white;
 	}
-
 	.overlay .closebtn:hover {
 	  color: #ccc;
 	}
@@ -91,7 +119,6 @@
 	  border-radius: 3px;
 	  border-style: none;
 	}
-
 	.overlay input[type=text]:hover {
 	  background: #f1f1f1;
 	}
@@ -104,7 +131,6 @@
 	  border: none;
 	  cursor: pointer;
 	}
-
 	.overlay button:hover {
 	  background: #bbb;
 	}
@@ -198,53 +224,6 @@
 		border-radius: 3.2px;
 	}
 </style>
-<script>
-	window.onscroll = function() {
-	  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-	  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-	  var scrolled = (winScroll / height) * 100;
-	  document.getElementById("myBar").style.width = scrolled + "%";
-	} 
-	function changeView(){
-		if (document.body.clientWidth < 700 && document.documentElement.clientWidth > 350){
-			console.log('THis is working fine');
-			document.getElementById('middle').innerHtml = '<br><br>';
-			document.getElementById('rows').style = 'width: 100%;margin-left: 2%';
-			document.getElementById('rows').class = '';
-			document.getElementById('leftHand').class = '';
-			document.getElementById('leftHand').style = 'width: 100%;margin-left: 2%';
-			document.getElementById('rightHand').class = '';
-			document.getElementById('rightHand').style = 'width: 100%;margin-left: 2%';  
-		}
-	}	
-	changeView();
-	function openSearch() {
-	  document.getElementById("myOverlay").style.display = "block";
-	}
-	function closeSearch() {
-	  document.getElementById("myOverlay").style.display = "none";
-	} 
-	function dataChange(queries){
-		console.log()
-		switch(queries){
-			case 'questionAsked' : 
-				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
-					"<li class='data-items'>Question 2</li></ul>";
-				break;
-			case 'answered' :	
-				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
-					"<li class='data-items'>Question 2</li></ul>";
-				break;
-			case 'extra' :
-				document.getElementById('userData').innerHTML = "<h3 class='data-items'>No data found</h3>";
-				break;
-			default : 
-				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
-					"<liclass='data-items'>Question 2</li></ul>";
-				break;		
-		}
-	}
-</script>
 <head>
 	<title>WeLcOmE</title>
 </head>
