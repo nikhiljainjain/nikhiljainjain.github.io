@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <style>
 	html, body{
 		margin: 0;
@@ -17,25 +17,24 @@
 	div{
 		font-family: "Lato", sans-serif;
 	}
-	#nabar-shadow{
-		box-shadow: 4px 2px 1px 1px green;
+	#navbar-shadow{
+		box-shadow: 2px 1px 1px 1px blue;
 		border-bottom: 3px black;
 		border-right: 2px black; 
-		background-color: #333; 
-	    position: fixed; 
-	    top: -50px;
-	    width: 100%; 
-	    transition: top 0.3s; 
 	}
 	img {
 		box-shadow: 3px 2px 1px 1px black;
+		max-width: 225px;
+		max-height: 225px;
 		border-radius: 49%;
 	}
 	img:hover {
-    	animation: shake 0.5s;
-    	animation-iteration-count: infinite;
+    	/*animation: shake 0.5s;
+    	animation-iteration-count: infinite;*/
+    	transform: scale3d(-1.25, -1.25, 1);
+    	transition: 0.325s ease;
 	}
-	@keyframes shake {
+	/*@keyframes shake {
 		0% { transform: translate(1px, 1px) rotate(0deg); }
 		10% { transform: translate(-1px, -2px) rotate(-1deg); }
 		20% { transform: translate(-3px, 0px) rotate(1deg); }
@@ -47,7 +46,7 @@
 		80% { transform: translate(-1px, -1px) rotate(1deg); }
 		90% { transform: translate(1px, 2px) rotate(0deg); }
 		100% { transform: translate(1px, -2px) rotate(-1deg); }
-	}
+	}*/
 	.overlay {
 	  height: 100%;
 	  width: 100%;
@@ -109,7 +108,7 @@
 	.overlay button:hover {
 	  background: #bbb;
 	}
-	@media screen(min-width: 1001px){
+	@media screen (min-width: 1001px){
 		div{
 			font-size: 57px;
 		}
@@ -126,8 +125,8 @@
 			font-size: 47px;
 		}
 		img{
-			height: 175px;
-			width: 175px;
+			height: 150px;
+			width: 150px;
 		}
 		li{
 			font-size-adjust: 0.65;
@@ -141,8 +140,8 @@
 			font-size: 37px;
 		}
 		img{
-			width: 125px;
-			height: 125px;
+			width: 100px;
+			height: 100px;
 		}
 		li{
 			font-size-adjust: 0.45;
@@ -161,6 +160,9 @@
 	progress{
 		border-style: none;
 		border-radius: 3px;
+		margin-left: 0.5%;
+		border-top-left-radius: 3px;
+		border-bottom-left-radius: 3px;
 		width: 100%;
 	}
 	#additional{
@@ -178,14 +180,23 @@
 	}
 	.progress-container {
 	  width: 100%;
-	  height: 8px;
-	  background: #ccc;
+	  height: 4px;
+	  background: white;
 	}
 	.progress-bar {
-	  height: 8px;
-	  background: #4caf50;
+	  height: 4px;
+	  background: blue;
 	  width: 0%;
 	} 
+	#leftHand{
+		text-align: center;
+	}
+	.data-items{
+		padding: 3px 3px;
+		margin: 4px 4px;
+		border: 1.7px dashed grey;
+		border-radius: 3.2px;
+	}
 </style>
 <script>
 	window.onscroll = function() {
@@ -213,6 +224,26 @@
 	function closeSearch() {
 	  document.getElementById("myOverlay").style.display = "none";
 	} 
+	function dataChange(queries){
+		console.log()
+		switch(queries){
+			case 'questionAsked' : 
+				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
+					"<li class='data-items'>Question 2</li></ul>";
+				break;
+			case 'answered' :	
+				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
+					"<li class='data-items'>Question 2</li></ul>";
+				break;
+			case 'extra' :
+				document.getElementById('userData').innerHTML = "<h3 class='data-items'>No data found</h3>";
+				break;
+			default : 
+				document.getElementById('userData').innerHTML = "<ul><li class='data-items'>Question 1</li>"+
+					"<liclass='data-items'>Question 2</li></ul>";
+				break;		
+		}
+	}
 </script>
 <head>
 	<title>WeLcOmE</title>
@@ -266,15 +297,14 @@
 	        </div>
 	      </li>
 	    </ul>
-		<button class='btn btn-warning' style='color: white;' onclick="openSearch()">Search</button>    
+		<button class='btn btn-primary' style='color: white;margin-right: 2.9px' onclick="openSearch()">Search</button>
+		<a href="#"><button class="btn btn-primary" style='color: white;'> LogOut</button></a>    
 	  </div>
-	  <br>
 	</nav>
 	<div class='container-fluid' style='margin: 10px 10px'>
 		<div class='row	' id='rows'>
 			<div class='col-2' id='leftHand' style='color: black;'>
-				<img src='https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.TW3hDfNXGyfeWCiA9aP5mQHaEK%26pid%3D15.1&f=1'
-				style='height: 225px;width: 225px;'>
+				<img src='https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.TW3hDfNXGyfeWCiA9aP5mQHaEK%26pid%3D15.1&f=1'>
 				<br>
 				<a href="#"><span style='color: blue'>Edit Profile</span></a>
 				<br>		
@@ -287,52 +317,34 @@
 				User Name
 				<br>
 				<br>
-				<!--span id='additional'>Additional Information</span-->	
+				<span id='additional'>Additional Data</span>	
 			</div>
 			<div class='col-1' id='middle'>
 			</div>
 			<div class='col-9' id='rightHand'>
-				<h2>Your score is 
-					<br>
-					<hr>
-					<span style='color: blue' id='scores'>765</span>
-				</h2>
-				<progress value="765" max="1000"></progress>
+				<h2>Your score is <span style='display: inline;color: blue' id='scores'> 765</span></h2> 
+				<hr>
+				<br>
+				<!--progress value="765" max="1000"></progress-->
 				<br>
 				<div class='container'>
-					<div class='jumbotron'>	
-						<nav style='width: 100%'>
+					<div class='jumbotron jumbotron-fluid' style='background-color: white'>	
+						<nav>
 						  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-						    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-						    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-						    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+						    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" role="tab" 
+						    onclick="dataChange('questionAsked')" aria-controls="nav-home" aria-selected="true">Question Asked</a>
+						    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" role="tab" 
+						    onclick="dataChange('answered')" aria-controls="nav-profile" aria-selected="false">Answered</a>
+						    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" 
+						    onclick="dataChange('extra')" aria-controls="nav-contact" aria-selected="false">Extra Stuff</a>
 						  </div>
 						</nav>
-						<div class="tab-content" id="nav-tabContent">
-						  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-						  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-							  <table style='margin-left: 5%'>
-								<tr>
-									<td>Question Asked by user</td>
-									<td>
-										<ul>
-											<l1>Answer 1</l1>
-											<br>
-											<l1>Answer 2</l1>
-											<br>
-											<l1>Answer 3</l1>
-											<br>
-											<l1>Answer 4</l1>
-											<br>
-											<l1>Answer 5</l1>
-											<br>
-										</ul>
-									</td>
-								</tr>
-							  </table>
-						  </div>
-						  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-						</div>
+						<div id='userData'>
+							<ul>
+								<li class="data-items">First Question</li>
+								<li class='data-items'>Second Question</li>
+							</ul>
+						</div>	
 					</div>
 					<br>
 				</div>	
