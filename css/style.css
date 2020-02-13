@@ -853,11 +853,16 @@ body:after {
   .form .form-control:active, .form .form-control:focus {
     border-color: #000; }
 
+.my_icon {
+	font-size: 30px;
+	padding-right: 10px;
+}
+
 .footer {
   font-size: .9rem; }
   .footer .footer-title {
     font-size: 1.1rem;
-    margin-bottom: 30px; }
+    margin-bottom: 10px; }
   .footer ul li {
     margin-bottom: 10px; }
   .footer a {
