@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "resume",
-        "work experience"
+        "work experience",
+        "index.html"
     ]
 }
